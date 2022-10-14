@@ -1,11 +1,13 @@
 import csv
+import os
+import sys
 
 # La structure parks est remplie des données de parking du fichier parking-metropole.txt
-# Cela donne concrètement un tableau à 2 dimensions (parks[0][0] retourne 'Identifiant')
+# Cela donne concrètement des tableaux dans un tableau (parks[0][0] retourne 'AMN0000')
 parks = []
 
 def chargerFichierParking():
-    with open("parking-metropole.txt", "r") as fichierParking:
+    with open(os.path.join(sys.path[0], 'parking-metropole.txt'), 'r') as fichierParking:
         lecture = csv.reader(fichierParking, delimiter = '	')
         next(lecture)
         for ligne in lecture:
@@ -13,7 +15,7 @@ def chargerFichierParking():
     print(parks)
 
 def main():
-    print("\n=============================================\nBienvenue sur Amiens Métropole CarPark Valpha\n=============================================\n")
+    print('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n')
     chargerFichierParking()
 
 main()

@@ -12,7 +12,7 @@ def chargerFichierParking():
         next(lecture)
         for ligne in lecture:
             parks.append(ligne)
-    print(parks)
+    print(parks) #print de debug
 
 def main():
     print('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n')

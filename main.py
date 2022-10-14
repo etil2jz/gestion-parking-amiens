@@ -22,6 +22,9 @@ with open(os.path.join(sys.path[0], 'parking-metropole.txt'), 'r') as fichierPar
         if parks[i][3] == 'Abbeville': nbParkingsAbbeville += 1
         i += 1
 
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def infoParkings():
     print('Nombre total de parkings: ' + str(nbParkingsTotal))
     print('Parkings à Amiens: ' + str(nbParkingsAmiens))
@@ -34,10 +37,24 @@ def rechercheStationnement():
     for i in range(27):
         if parks[i][3] == ville:
             print(parks[i][0] + ' - ' + parks[i][1] + ' - ' + parks[i][2] + ' - ' + parks[i][4])
-    choixParking = input("\nEntrez l'identifiant du parking désiré :\n> ")
+    choixParking = input("\nEntrez l'identifiant du parking désiré (0 pour abandonner) :\n> ")
+    clear()
     return choixParking
 
+def gestionStationnement(choixParking):
+    if choixParking == '0': exit()
+    for i in range(27):
+        if parks[i][0] == choixParking:
+            panneauAffichage = parks[i][8]
+            nom = parks[i][1]
+            adresse = parks[i][2]
+    
+
 infoParkings()
-print('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n\n1. Rechercher un stationnement')
+print('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n'
+      '\n1. Rechercher un stationnement')
 choix = input('> ')
-if choix == '1': choixParking = rechercheStationnement()
+clear()
+if choix == '1':
+    choixParking = rechercheStationnement()
+    gestionStationnement(choixParking)

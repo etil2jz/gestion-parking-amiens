@@ -35,7 +35,7 @@ def infoParkings():
     print('Parkings à Abbeville: ' + str(nbParkingsAbbeville))
 
 def rechercheStationnement():
-    ville = input('\nDans quelle ville souhaitez-vous stationner ?\n> ')
+    ville = input('\nDans quelle ville souhaitez-vous stationner ?\n Abbeville, Albert, Amiens\n> ')
     clear()
     print("\nVoici la liste des parkings d'" + ville + " :\n")
     for i in range(27):
@@ -62,3 +62,11 @@ clear()
 if choix == '1':
     choixParking = rechercheStationnement()
     gestionStationnement(choixParking)
+
+elif choix == '2':
+    for i in range(27):
+            print(parks[i][0] + ' - ' + parks[i][1] + ' - ' + parks[i][2] + ' - ' + parks[i][3] + ' - ' + parks[i][4] + ' - ' + parks[i][5] + ' - ' + parks[i][6] + ' - ' + parks[i][7] + ' - ' + parks[i][8])
+
+elif choix == '3':
+    print("Ton papa le bucheron\n")
+

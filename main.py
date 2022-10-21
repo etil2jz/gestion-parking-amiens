@@ -1,5 +1,6 @@
 import csv
 import os
+import platform
 import sys
 
 # La structure parks est remplie des données de parking du fichier parking-metropole.txt
@@ -9,6 +10,8 @@ nbParkingsTotal = 0
 nbParkingsAmiens = 0
 nbParkingsAlbert = 0
 nbParkingsAbbeville = 0
+
+clients = []
 
 with open(os.path.join(sys.path[0], 'parking-metropole.txt'), 'r') as fichierParking:
     lecture = csv.reader(fichierParking, delimiter = '\t')
@@ -23,7 +26,7 @@ with open(os.path.join(sys.path[0], 'parking-metropole.txt'), 'r') as fichierPar
         i += 1
 
 def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if platform.system() == 'Windows' else 'clear')
 
 def infoParkings():
     print('Nombre total de parkings: ' + str(nbParkingsTotal))
@@ -33,6 +36,7 @@ def infoParkings():
 
 def rechercheStationnement():
     ville = input('\nDans quelle ville souhaitez-vous stationner ?\n> ')
+    clear()
     print("\nVoici la liste des parkings d'" + ville + " :\n")
     for i in range(27):
         if parks[i][3] == ville:
@@ -49,7 +53,7 @@ def gestionStationnement(choixParking):
             nom = parks[i][1]
             adresse = parks[i][2]
     
-
+clear()
 infoParkings()
 print('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n'
       '\n1. Rechercher un stationnement')

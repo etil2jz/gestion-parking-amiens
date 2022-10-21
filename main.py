@@ -68,5 +68,5 @@ elif choix == '2':
             print(parks[i][0] + ' - ' + parks[i][1] + ' - ' + parks[i][2] + ' - ' + parks[i][3] + ' - ' + parks[i][4] + ' - ' + parks[i][5] + ' - ' + parks[i][6] + ' - ' + parks[i][7] + ' - ' + parks[i][8])
 
 elif choix == '3':
-    print("Ton papa le bucheron\n")
+    print("Ton père le bucheron\n")
 

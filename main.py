@@ -23,12 +23,15 @@ drivers = [] # Liste drivers vide qui sera remplie au fur et à mesure d'objets 
 # La classe clients est remplie des données concernant les automobilistes
 # Cela comprend l'identifiant du parking, la plaque du véhicule, la date et heure d'entrée
 class clients:
-    def __init__(self, choixParking, numPlaque, temps):
+    def __init__(self, choixParking, numPlaque, temps, dateOut, heureOut, minuteOut):
         self.idParking = choixParking
         self.plaque = numPlaque
-        self.date = temps
+        self.dateArrivee = temps
+        self.dateSortie = dateOut
+        self.heureSortie = heureOut
+        self.minuteSortie = minuteOut
     def __repr__(self):
-        return 'idParking: %s - plaque: %s - date: %s' % (self.idParking, self.plaque, self.date)
+        return 'idParking: %s - plaque: %s - dateArrivee: %s - dateSortie: %s - heureSortie: %s - minuteSortie: %s' % (self.idParking, self.plaque, self.dateArrivee, self.dateSortie, self.heureSortie, self.minuteSortie)
 
 # Ouverture du fichier parking-metropole.txt en lecture
 # afin d'importer ses données dans parks
@@ -83,24 +86,24 @@ def rechercheStationnement():
     clear()
     return choixParking
 
-def inscriptionClient(choixParking):
-    plaque = input("\n\nEntrez votre plaque d'immatriculation :\n> ")
-
-def gestionStationnement(choixParking):
+def inscriptionStationnement(choixParking):
     if choixParking == '0': exit()
     for i in range(27):
         if parks[i][0] == choixParking:
-            print('Nom: ' + parks[i][1] + '\nAdresse: ' + parks[i][2] + "\nPanneau d'affichage: " + parks[i][8] + ' places')
-    inscriptionClient(choixParking)
+            print('Ville: ' + parks[i][3] + '\nNom: ' + parks[i][1] + '\nAdresse: ' + parks[i][2] + "\nPanneau d'affichage: " + parks[i][8] + ' places')
+    plaque = input("\n\nEntrez votre plaque d'immatriculation\n> ")
+    dateSortie = input('\nEntrez votre date de sortie\n> ')
+    heureSortie = input('\nEntrez votre horaire de sortie\n> Heure : ')
+    minuteSortie = input('> Minute : ')
+    drivers.append(clients(choixParking, plaque, temps(), dateSortie, heureSortie, minuteSortie))
+    print(drivers[0]) # debug
 
 clear()
 infoParkings()
-#drivers.append(clients('AMN0000', 'CR-709-ZF', temps()))
-#drivers.append(clients('AMN0001', 'EA-726-LR', temps()))
-print('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n'
-      '\n1. Rechercher un stationnement')
-choix = input('> ')
+choix = input('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n'
+              '\n1. Rechercher un stationnement'
+              '\n> ')
 clear()
 if choix == '1':
     choixParking = rechercheStationnement()
-    gestionStationnement(choixParking)
+    inscriptionStationnement(choixParking)

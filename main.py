@@ -2,10 +2,7 @@ import csv
 import os
 import platform
 import sys
-import socket
-import struct
 import datetime
-import time
 
 # parks est remplie des données de parking du fichier parking-metropole.txt
 # Cela donne concrètement des tableaux dans un tableau (parks[0][0] retourne 'AMN0000')
@@ -20,18 +17,16 @@ nbParkingsAbbeville = 0
 
 drivers = [] # Liste drivers vide qui sera remplie au fur et à mesure d'objets clients
 
+exitCondition = 0
+
 # La classe clients est remplie des données concernant les automobilistes
 # Cela comprend l'identifiant du parking, la plaque du véhicule, la date et heure d'entrée
 class clients:
-    def __init__(self, choixParking, numPlaque, temps, dateOut, heureOut, minuteOut):
+    def __init__(self, choixParking, numPlaque):
         self.idParking = choixParking
         self.plaque = numPlaque
-        self.dateArrivee = temps
-        self.dateSortie = dateOut
-        self.heureSortie = heureOut
-        self.minuteSortie = minuteOut
     def __repr__(self):
-        return 'idParking: %s - plaque: %s - dateArrivee: %s - dateSortie: %s - heureSortie: %s - minuteSortie: %s' % (self.idParking, self.plaque, self.dateArrivee, self.dateSortie, self.heureSortie, self.minuteSortie)
+        return 'idParking: %s - plaque: %s' % (self.idParking, self.plaque)
 
 # Ouverture du fichier parking-metropole.txt en lecture
 # afin d'importer ses données dans parks
@@ -42,23 +37,22 @@ with open(os.path.join(sys.path[0], 'parking-metropole.txt'), 'r') as fichierPar
     for ligne in lecture:
         parks.append(ligne)
         nbParkingsTotal += 1
-        if parks[i][3] == 'Amiens': nbParkingsAmiens += 1
-        elif parks[i][3] == 'Albert': nbParkingsAlbert += 1
-        elif parks[i][3] == 'Abbeville': nbParkingsAbbeville += 1
+        if parks[i][4] == '.':
+            nbParkingsTotal -= 1
+            with open(os.path.join(sys.path[0], 'defaillants.txt'), 'a') as fichierDefaillants:
+                for j in range(9):
+                    fichierDefaillants.write(parks[i][j] + '\t')
+                fichierDefaillants.write('\n')
+            del parks[-1]
+            i -= 1
+        if parks[i][3] == 'Amiens' + parks[i][4] != '.': nbParkingsAmiens += 1
+        elif parks[i][3] == 'Albert' + parks[i][4] != '.': nbParkingsAlbert += 1
+        elif parks[i][3] == 'Abbeville' + parks[i][4] != '.': nbParkingsAbbeville += 1
         i += 1
 
-# Fonction pour récupérer le temps OFFICIEL dans le cas où
-# l'utilisateur serait tenté de modifier son heure locale
-def temps():
-    REF_TIME_1970 = 2208988800
-    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    data = b'\x1b' + 47 * b'\0'
-    client.sendto(data, ('0.fr.pool.ntp.org', 123))
-    data, address = client.recvfrom(1024)
-    if data:
-        t = struct.unpack('!12I', data)[10]
-        t -= REF_TIME_1970
-    return datetime.datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S+01:00')
+# Fonction pour récupérer le temps actuel
+def getTemps():
+    return datetime.now().strftime(date_format_str)
 
 # Fonction pour vider le terminal à des fins esthétiques
 # cls sous Windows et clear sous Linux / Mac OS
@@ -78,26 +72,25 @@ def rechercheStationnement():
         if ville == 'Amiens': break
         elif ville == 'Albert': break
         elif ville == 'Abbeville': break
-    print("\nVoici la liste des parkings d'" + ville + " :\n")
-    for i in range(27):
+    print('\nVoici la liste des parkings d\'' + ville + ' :\n')
+    for i in range(len(parks)):
         if parks[i][3] == ville:
             print(parks[i][0] + ' - ' + parks[i][1] + ' - ' + parks[i][2] + ' - ' + parks[i][4])
-    choixParking = input("\nEntrez l'identifiant du parking désiré (0 pour abandonner) :\n> ")
+    choixParking = input('\nEntrez l\'identifiant du parking désiré (0 pour abandonner) :\n> ')
     clear()
     return choixParking
 
-def inscriptionStationnement(choixParking):
+def entreeParking(choixParking):
     if choixParking == '0': exit()
-    for i in range(27):
+    for i in range(len(parks)):
         if parks[i][0] == choixParking:
-            print('Ville: ' + parks[i][3] + '\nNom: ' + parks[i][1] + '\nAdresse: ' + parks[i][2] + "\nPanneau d'affichage: " + parks[i][8] + ' places')
-    plaque = input("\n\nEntrez votre plaque d'immatriculation\n> ")
-    dateSortie = input('\nEntrez votre date de sortie\n> ')
-    heureSortie = input('\nEntrez votre horaire de sortie\n> Heure : ')
-    minuteSortie = input('> Minute : ')
-    drivers.append(clients(choixParking, plaque, temps(), dateSortie, heureSortie, minuteSortie))
-    print(drivers[0]) # debug
+            print('Ville: ' + parks[i][3] + '\nNom: ' + parks[i][1] + '\nAdresse: ' + parks[i][2] + '\nPanneau d\'affichage: ' + parks[i][8] + ' places')
+    plaque = input('\n\nEntrez votre plaque d\'immatriculation\n> ')
+    drivers.append(clients(choixParking, plaque))
+    # debug
+    print('Pour le client 1 : parking=' + drivers[0].idParking + ' plaque=' + drivers[0].plaque)
 
+#while exitCondition != 1:
 clear()
 infoParkings()
 choix = input('\n======================================\nBienvenue sur Amiens Métropole CarPark\n======================================\n'
@@ -106,4 +99,4 @@ choix = input('\n======================================\nBienvenue sur Amiens M�
 clear()
 if choix == '1':
     choixParking = rechercheStationnement()
-    inscriptionStationnement(choixParking)
+    entreeParking(choixParking)

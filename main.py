@@ -81,7 +81,7 @@ def rechercheStationnement():
         if parks[i][3] == ville:
             print(parks[i][0] + ' - ' + parks[i][1] + ' - ' + parks[i][2] + ' - ' + parks[i][4])
     choixParking = input("\nEntrez l'identifiant du parking désiré (0 pour abandonner) :\n> ")
-    #debut anti-con choix parking
+    #debut anti-con choix parking  
     while tempo == 1:
 
         for i in range(27):
@@ -89,6 +89,10 @@ def rechercheStationnement():
                 tempo=0
                 print("Lecture des plaque")
                 break
+            try:
+                choixParking 
+                # faire avec un if pour comaprer par ville
+
             #else :
             #    print("Erreur de saisie, veuillez recommencer")
             #    time.sleep(3)

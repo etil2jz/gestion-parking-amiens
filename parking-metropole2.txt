@@ -1,0 +1,25 @@
+Identifiant	Nom	Adresse	Ville	Etat	Places disponibles	Capacité max	Date de mise à jour	Affichage panneaux
+AMN0000	Parking Gare La Vallée	80 Rue la Vallée	Amiens	OUVERT	185	724	2022-11-24 21:38:13+01:00	185
+AMN0001	Parking Saint Leu	20 Rue des Huchers	Amiens	OUVERT	183	585	2022-11-24 21:38:13+01:00	180
+AMN0002	Parking Perret	Boulevard de Belfort	Amiens	OUVERT	140	490	2022-11-24 21:38:13+01:00	140
+AMN0003	Parking Amiens 2	Boulevard Alsace Lorraine	Amiens	OUVERT	404	525	2022-11-24 21:38:13+01:00	404
+AMN0004	Parking Hôtel de Ville	Place de l'Hôtel de Ville	Amiens	OUVERT	92	121	2022-11-24 21:38:13+01:00	90
+AMN0005	Parking du Port d'Amont	Port d'Amont	Amiens	OUVERT	24	50	2022-11-24 21:38:13+01:00	20
+AMN0006	Parking des Jacobins	Rue des Jacobins	Amiens	OUVERT	200	587	2022-11-24 21:38:13+01:00	200
+AMN0007	Parking Voclin	Boulevard de Turin	Amiens	OUVERT	122	250	2022-11-24 21:38:13+01:00	120
+AMN0008	Parking des 3 Cailloux	Rue Robert de Luzarches	Amiens	OUVERT	394	486	2022-11-24 21:38:13+01:00	390
+AMN0009	Parking Cirque	Place Longueville	Amiens	OUVERT	361	433	2022-11-24 21:38:13+01:00	360
+AMN0010	Parking Catelas	26 Rue Jean Catelas	Amiens	OUVERT	169	245	2022-11-24 21:38:13+01:00	165
+AMN0011	Parking Allendé	Allée du Zoo	Amiens	OUVERT	24	342	2022-11-24 21:38:13+01:00	20
+AMN0012	Parking Polyclinique	74 Rue Alexandre Dumas	Amiens	OUVERT	291	300	2022-11-24 21:38:13+01:00	290
+AMN0014	Parking Centrum	3 Rue Frédéric Petit	Amiens	OUVERT	546	940	2022-11-24 21:38:13+01:00	545
+AMN0015	Parking Debouverie	Place Debouverie	Amiens	OUVERT	388	525	2022-11-24 21:38:13+01:00	385
+AMN0016	Parking Hippodrome	Place de l'Hippodrome	Amiens	OUVERT	208	293	2022-11-24 21:38:13+01:00	205
+AMN0017	Parking Parmentier	1 Place Parmentier	Amiens	OUVERT	12	58	2022-11-24 21:38:13+01:00	10
+ALB0001	Parking Parkplatz	Place du Général de Gaulle	Albert	OUVERT	421	487	2022-11-24 21:38:13+01:00	420
+ALB0002	Parking Méricourt-l'Abbé	Rue Jean Michel	Albert	ABONNES	150	273	2022-11-24 21:38:13+01:00	ABONNES
+ALB0003	Parking Lochnagar	Route de la Grande Mine	Albert	OUVERT	1923	2000	2022-11-24 21:38:13+01:00	1920
+ABV0002	Parking Saint-Vulfran	Parvis Saint-Vulfran	Abbeville	OUVERT	631	878	2022-11-24 21:38:13+01:00	520
+ABV0004	Parking Clémenceau	Place Clémenceau	Abbeville	OUVERT	7	75	2022-11-24 21:38:13+01:00	5
+ABV0005	Parking Courbet	Place de l'Amiral Courbet	Abbeville	OUVERT	230	1300	2022-11-24 21:38:13+01:00	230
+ABV0006	Parking Marché	Place du Marché Jacques Becq	Abbeville	COMPLET	2	85	2022-11-24 21:38:13+01:00	COMPLET

@@ -7,6 +7,7 @@ import struct
 import datetime
 import time
 
+
 # parks est remplie des données de parking du fichier parking-metropole.txt
 # Cela donne concrètement des tableaux dans un tableau (parks[0][0] retourne 'AMN0000')
 parks = []
@@ -69,7 +70,7 @@ def infoParkings():
     print('Parkings à Abbeville: ' + str(nbParkingsAbbeville))
 
 def rechercheStationnement():
-    tempo=1
+    cool = 1
     while True:
         ville = input('\nDans quelle ville souhaitez-vous stationner ?\n> ')
         clear()
@@ -81,26 +82,19 @@ def rechercheStationnement():
         if parks[i][3] == ville:
             print(parks[i][0] + ' - ' + parks[i][1] + ' - ' + parks[i][2] + ' - ' + parks[i][4])
     choixParking = input("\nEntrez l'identifiant du parking désiré (0 pour abandonner) :\n> ")
-    #debut anti-con choix parking  
-    while tempo == 1:
-
-        for i in range(27):
-            if choixParking == parks[i][0]: 
-                tempo=0
-                print("Lecture des plaque")
+    #debut anti-con choix parking
+    if ville == 'Amiens':
+        for i in range(18):
+            if choixParking == parks[0][0] or parks[1][0] or parks[2][0] or parks[3][0] or parks[4][0] or parks[5][0] or parks[5][0] or parks[6][0] or parks[7][0] or parks[8][0] or parks[9][0] or parks[10][0] or parks[11][0] or parks[12][0] or parks[13][0] or parks[14][0] or parks[15][0] or parks[16][0] or parks[17][0] or parks[18][0]:            
+                print("amiens")
                 break
-            try:
-                choixParking 
-                # faire avec un if pour comaprer par ville
-
-            #else :
-            #    print("Erreur de saisie, veuillez recommencer")
-            #    time.sleep(3)
-            #    tempo=1
-    print("Licorne")
-    time.sleep(3)
-    clear()
-    #try except regarder sur internet
+            if choixParking == parks[i][0]:
+                print("Tu t'es pas troper mon con\n" + str(i))
+                break
+            if choixParking != parks[0][0] or parks[1][0] or parks[2][0] or parks[3][0] or parks[4][0] or parks[5][0] or parks[5][0] or parks[6][0] or parks[7][0] or parks[8][0] or parks[9][0] or parks[10][0] or parks[11][0] or parks[12][0] or parks[13][0] or parks[14][0] or parks[15][0] or parks[16][0] or parks[17][0] or parks[18][0]:            
+                print("Sale con tu clc")
+            else:
+                cool+=1
     return choixParking
 
 def inscriptionClient(choixParking):

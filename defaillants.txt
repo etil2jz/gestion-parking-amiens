@@ -1,3 +1,0 @@
-AMN0013	Parking des Halles	22 Rue du Général Leclerc	Amiens	FERME	0	455	2022-10-03 09:45:00+01:00	FERME	
-ABV0001	Parking Saint Sépulcre	Place du Saint Sépulcre	Abbeville	FERME	0	1400	2022-10-03 09:45:00+01:00	FERME	
-ABV0003	Parking Libération	30 Place de la Libération	Abbeville	.	0	1000	2022-10-03 09:45:00+01:00	.	
